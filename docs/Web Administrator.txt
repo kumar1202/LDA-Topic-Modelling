@@ -1,0 +1,64 @@
+Collaborate with development teams to discuss, analyze, or resolve usability issues.
+
+Identify or address interoperability requirements.
+
+Track, compile, and analyze web site usage data.
+
+Document application and web site changes or change procedures.
+
+ Develop or document style guidelines for web site content.
+Test new software packages for use in web operations or other applications.
+Develop or implement procedures for ongoing web site revision.
+
+Set up or maintain monitoring tools on web servers or web sites.
+Test backup or recovery plans regularly and resolve any problems.
+
+Document installation or configuration procedures to allow maintenance and repetition.
+
+Recommend web site improvements, and develop budgets to support recommendations.
+Implement updates, upgrades, and patches in a timely manner to limit loss of service.
+
+Identify, standardize, and communicate levels of access and security.
+
+Inform web site users of problems, problem resolutions or application changes and updates.
+Provide training or technical assistance in web site implementation or use.
+
+Perform user testing or usage analyses to determine web sites' effectiveness or usability.
+
+Evaluate or recommend server hardware or software.
+
+Correct testing-identified problems, or recommend actions for their resolution.
+
+Develop testing routines and procedures.
+
+Identify or document backup or recovery plans.
+
+Gather, analyze, or document user feedback to locate or resolve sources of problems.
+
+Develop web site performance metrics.
+
+Back up or modify applications and related data to provide for disaster recovery.
+
+Determine sources of web page or server problems, and take action to correct such problems.
+
+Review or update web page content or links in a timely manner, using appropriate tools.
+
+Implement web site security measures, such as firewalls or message encryption.
+
+Monitor systems for intrusions or denial of service attacks, and report security breaches to appropriate personnel.
+
+Administer internet/intranet infrastructure, including components such as web, file transfer protocol (FTP), news and mail servers.
+
+Monitor web developments through continuing education, reading, or participation in professional conferences, workshops, or groups.
+
+Collaborate with web developers to create and operate internal and external web sites, or to manage projects, such as e-marketing campaigns.
+
+Install or configure web server software or hardware to ensure that directory structure is well-defined, logical, secure, and that files are named properly.
+
+Test issues such as system integration, performance, and system security on a regular schedule or after any major program modifications.
+
+Develop and implement marketing plans for home pages, including print advertising or advertisement rotation.
+
+Check and analyze operating system or application logfiles regularly to verify proper system performance.
+
+Evaluate testing routines or procedures for adequacy, sufficiency, and effectiveness.

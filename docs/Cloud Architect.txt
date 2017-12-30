@@ -1,0 +1,41 @@
+The CIS PS Europe organization provides Cloud and Infrastructure consulting and transformation services to Large Enterprises across Europe. It is part of the Cognizant IT Infrastructure Services horizontal, which services all verticals.  This role will be within the CIS PS Cloud practice, which provides Cloud related Professional and Consulting services to accounts and clients within the UK and Europe. Other practices within CIS PS cover Enterprise Computing (Data Center), End User Computing, IT Service Management, Networking and Project and Program Management
+ 
+Position responsibilities and expectations
+Design of client’s Cloud environments with a focus on Azure and AWS and demonstrate Technical Cloud Architectural knowledge, playing a vital role in the design of production, staging, QA and development Cloud Infrastructures running in 24x7 environments.
+Delivery of customer Cloud Strategies, aligned with customer’s business objectives and with a focus on Cloud Migrations.
+Provide leadership in infrastructure migration methodologies and techniques including mass application movements into the cloud including implementation of Azure or AWS within in large regulated enterprise environments.
+Nurture Cloud computing expertise internally and externally to drive Cloud Adoption
+The candidate will be part of Cognizant’s Infrastructure Professional Services team in the Nordics, providing Cloud expertise within the team.
+Candidate will report to Professional Services lead for the Nordics and be part of the European Cloud Expertise team.
+ Technical Skills required
+Azure or AWS based Cloud Architecture and migration skills and experience.
+Strong understanding across Cloud and infrastructure components (server, storage, network, data, and applications) to deliver end to end Cloud Infrastructure architectures and designs.
+Knowledge of further Cloud technologies (Azure, S3, VMware)
+4+ years' experience as an IT Infrastructure Architect, with focus on Azure, cloud, server, storage and networking.
+10+ years' experience with MS Server Operating Systems
+4+ years' experience with MS SQL, Sharepoint and .NET
+Experience in leading a team applying all elements of Technical Consulting
+Excellent communication & interpersonal skills
+Understands and can articulate the technical merits and value of Cloud computing
+ 
+Consulting skills required  
+Passionate, persuasive, articulate Cloud professional capable of quickly establishing interest and credibility in how to design, deploy and operate cloud based Architectures. Strong written, verbal and chalk board skills
+Experience in working in Prince2 or PMI methodology managed projects is valued.
+Experience in enterprise applications, solutions and data center infrastructures.
+Experience in platform and cloud migrations, including of Mass Migration Toolsets: Platespin, Appzero, DoubleTake Move
+Ability to work with team members from around the globe / experience working with off-shore models. 
+ 
+               
+Degrees/Certifications Earned         
+Bachelor's degree in Computer Science, Computer Engineering or Information Technology
+Relevant Industry certifications such on Microsoft Azure or Amazon Web Services (AWS)
+Togaf certification is a pre. 
+Other
+10 or more years of IT experience.
+Minimum of 5 year experience as a cloud consultant.
+Exposure and working level knowledge of working with and interfacing to global delivery teams
+Good business judgment, a comfortable, open communication style, and a willingness and ability to work with customers and teams.
+Strong service attitude and a commitment to quality.
+Fluent in English, Danish or other Scandinavian languages is a pre
+Preferred location Copenhagen region, Denmark.
+About Cognizant

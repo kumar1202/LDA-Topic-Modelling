@@ -1,0 +1,48 @@
+An exciting opportunity in the dynamic field of Finance for a master of machine learning and NLP. This is an opportunity to be a data scientist working on exciting capital markets projects into multiple asset classes, utilizing your technical expertise and resourcefulness.
+
+LOCATION: Gurgaon
+
+YOUR FUTURE EMPLOYER:
+
+A leading, global firm with an illustrious range of financial and asset management services serving different market regions across the globe.
+
+YOU WILL BE RESPONSIBLE FOR:
+
+- Working into advance data analytics group in the field of big data infrastructure and machine learning algorithms
+
+- Extensively involved in working on NLP and neural networks
+
+- Working into capital markets and working on real time data like NEWS event, commentaries and Global markets current scenarios
+
+- Handling big data and applying big data technologies like Hadoop, spark, hive etc.
+
+- Supporting team members to create tools, solutions and machine elerning models on the larger data sets
+
+Contribute to the development/ deployment of machine learning algorithms, operational research, semantic analysis, and statistical methods for finding structure in large data sets
+Use advanced statistics and machine learning on large scale multidimensional data and generate actionable insights that will be leveraged to drive operations and develop strategies for Delhivery.
+Breakdown business problems by working closely with Product Team and Leadership Management Team, analyze requirements and look into data to recommend products and solutions
+Optimize Delhivery operations by applying data science in solving complex business problems
+Collaborate with cross-functional teams including but not limited to Logistics, BD, Sales, Marketing, Security, Customer Service, etc.
+Disseminate original research in peer reviewed journals and conferences.
+
+Responsibilities:
+Design systems and services that fulfill Delhiverys business requirements.
+Breakdown business problems by working closely with Product Team and Leadership Management Team.
+Guide and work closely with Data Science Team.
+Optimize Delhivery operations by implementing data science in solving complex business problems. Run on field experiments and POCs to validate the solution.
+How we get things done:
+Work closely with PM Team to understand and analyze Requirements
+Identify algorithms and machine learning techniques that should be applied to derive the solution for identified business problems.
+Collaborate with cross-functional teams including but not limited to Logistics, BD, Sales, Marketing, Security, Customer Service, etc.
+Functional Skills:
+Machine Learning Techniques: 
+Supervised Learning.
+Unsupervised Learning.
+Semi-Supervised Learning
+
+An exciting opportunity in the dynamic field of Finance for a master of machine learning and NLP. This is an opportunity to be a data scientist working on exciting capital markets projects into multiple asset classes, utilizing your technical expertise and resourcefulness.
+
+LOCATION:  
+
+Gurgaon
+

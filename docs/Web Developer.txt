@@ -1,0 +1,44 @@
+Web developers build and shape a visitor’s experience at a website. They do this through the creation of page layouts (headings and paragraphs), website styling (colors and fonts), and page features (animations and pictures).
+
+Web developers work closely with project managers and designers to ensure the final product adheres to the predetermined budget, scope, and design. is not required for many positions, numerous years of hands-on experience coding both websites and web applications 
+
+Along with strong technical skills, front-end web developers must have strong written and oral communication skills, a solid grasp of graphic design, and exceptional time management capabilities.
+
+They must be able to troubleshoot issues quickly and to stay up-to-date on current and emerging technologies, standards, and trends.
+
+Through the use of code, such as HTML or JavaScript, web developers bring a website or web application to life. Continued testing, maintenance, and updates are handled by the web developer throughout the lifecycle of the website.
+Actively Seek New Programming Knowledge
+Build Products Using HTML/CSS/JS and Other Front-End Technologies
+Code and Deploy Applications in a Cross-Platform, Cross-Browser Environment
+Detail-Orientated
+Document Project Build and Maintenance
+Building User Interfaces and Prototypes From Wireframes and Designs
+Git and Github
+Photoshop
+Development and Debugging Tools for Cross-Browser Issues
+Social Media and Third Party APIs
+Flexibility
+Follow and Implement Industry Accepted Best Practices and Tools
+
+
+Frequent Feedback
+Keen Attention to Details
+REST-Based APIs
+Web Application Development Frameworks
+Manage and Prioritize Multiple Projects
+
+
+Proficient With Javascript
+Seamlessly Switch Between Multiple Projects
+Self-Starter Attitude
+HTML5/CSS3, jQuery and Responsive Design
+Object-Oriented Programming (OOP)
+Strong Problem Solver
+
+Thrive in a Team Environment
+Troubleshoot and Communicate Effectively
+Update Current Websites to Meet Modern Web Standards
+UI / UX
+WordPress, Theming and Module Development Experience
+Work Well Under Pressure
+Write and Maintain Web Applications

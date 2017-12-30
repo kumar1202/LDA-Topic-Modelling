@@ -1,0 +1,39 @@
+Programming with AWS APIs, .NET, Node.JS, C#, Python, Power Shell, Java, SQL, Web Services
+Knowledge and  coding experience in AWS, Azure, Google  cloud providers 
+Work with Containers services
+Write Lambda function
+Not required, but nice to have skills 
+
+Leveraging SDKs , API, CLI to interact with AWS , Azure, Google, Oracle providers from your application
+Writing code that optimizes performance of AWS, Azure, Google  services used by your application
+Code-level application security (IAM roles, credentials, encryption, etc.)
+Developing with RESTful API interfaces
+Work with Devops CI/CD tools like GIT, Jenkins, Chef, Puppet, Ansible etc
+General troubleshooting and debugging
+AWS Developer certification 
+Integrating data from various sources in different formats
+Implementing Kibana on top of Elastic Search.
+Creating CloudFormation templates for the stacks with custom and managed config rules for implementing control compliance
+Active TS/SCI Clearance
+Bachelor’s degree in CS / Math / Science / Engineering / Information Technology related technical field
+Minimum of 11 full years of experience in related field.
+Experience with AWS/C2S Services:Management - CloudWatch (Events/Logs), IAM, CloudTrail, EC2 Systems Manager, IaaS - EC2, VPC, EBS, ELB, KMS, Config, SNS, SQS, SES, SWF, S3, Glacier
+Experience designing, developing, deploying, testing in AWS architecture
+Working knowledge of DevOps, Release engineering and Operations approach
+Experience with systems architectures (hardware, software, networking, and databases)
+Experience with Windows/Linux command-line interface (powershell/bash)
+Strong interpersonal, problem solving, organizational and multi-tasking skills
+Excellent written, verbal, and presentation skills
+Able to work with multiple government customer stakeholders while meeting strict timelines
+A team player capable of high performance and flexibility in a dynamic working environment
+
+
+Administrative experience with relational databases (AWS RDS, IBM DB2, Oracle, SQL Server)
+ServiceNow Administration and Development
+SSL certificate implementation
+AWS Associate Level Certification
+Proficiency and experience with AWS developer tools and workflows (AWSCLI, CloudFormation)
+Working knowledge of continuous integration and delivery tools (e.g. Git, Jenkins, Puppet, Chef, etc.)
+Knowledge of script / programming languages (HTML, JavaScript, JAVA, C#)
+DOD 8570 compliance
+Demonstrated working knowledge of the NGA organization and programs and ASP vs. ISP knowledge.
