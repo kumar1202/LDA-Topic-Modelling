@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
+
+# -*- coding: ansi -*-
 """
-Created on Mon Nov  6 11:01:31 2017
+Created on Tue Jan  2 14:35:31 2018
 
 @author: Admin
 """
@@ -110,6 +111,10 @@ def lda():
 def similarity1():
     # load word-id dictionary
     dirpath = os.getcwd()
+    print(dirpath)
+    res_file = open(dirpath+"\\res_list.txt","r",encoding="ansi")
+    res_list = res_file.read().split('\n')
+    print(res_list)
     id2word = Dictionary.load('model_1/foobar.txtdic')
     # load LDA model
     lda = LdaModel.load('model_1/lda.model')
@@ -117,25 +122,37 @@ def similarity1():
     # read file contents and split into words
     os.chdir(dirpath+ "//docs//")
     docs = glob.glob("*.txt")
-    for file_x in docs:
-        for file_y in docs:
-            if file_x != file_y:
-                with open(file_x) as fp:
-                    doc_1 = fp.read().lower().split()
-                with open(file_y) as fp:
-                    doc_2 = fp.read().lower().split()
-
+    for i in range(len(docs)):
+        for j in range(i+1,len(docs)):
+            with open(docs[i]) as fp:
+                doc_1 = fp.read().lower().split()
+            with open(docs[j]) as fp:
+                doc_2 = fp.read().lower().split()
+                # remove excluded words
+                doc_1x = [x for x in doc_1 if x not in res_list]
+                doc_2x = [x for x in doc_2 if x not in res_list]
                 # create document bow
                 doc_1_bow = id2word.doc2bow(doc_1)
                 doc_2_bow = id2word.doc2bow(doc_2)
 
+                doc_1_bowx = id2word.doc2bow(doc_1x)
+                doc_2_bowx = id2word.doc2bow(doc_2x)
                 # infer topic distributions
                 doc_1_lda = lda[doc_1_bow]
                 doc_2_lda = lda[doc_2_bow]
 
+                doc_1_ldax = lda[doc_1_bowx]
+                doc_2_ldax = lda[doc_2_bowx]
+
                 # find similarity using cosine distance
                 similarity = cossim(doc_1_lda, doc_2_lda)
-                print("The similarity score of "+ file_x[:-4] + " and "+ file_y[:-4] + " is = " + str(similarity*100))
+                print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarity*100))
+                
+
+                print("After excluding selected words")
+                
+                similarityx = cossim(doc_1_ldax, doc_2_ldax)
+                print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarityx*100))
                 print()
 
 
