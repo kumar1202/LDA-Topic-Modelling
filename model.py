@@ -9,8 +9,10 @@ from gensim.corpora.textcorpus import TextDirectoryCorpus
 from gensim.corpora import Dictionary, MmCorpus
 from gensim.models import LdaModel, TfidfModel
 from gensim.matutils import cossim
+import numpy as np
 import os
 import glob
+from graph import plot_graph
 
 # replace LdaModel with LdaMulticore for faster train times
 from gensim.models.ldamulticore import LdaMulticore
@@ -118,7 +120,9 @@ def similarity1():
     id2word = Dictionary.load('model_1/foobar.txtdic')
     # load LDA model
     lda = LdaModel.load('model_1/lda.model')
-
+    topics = lda.print_topics(num_topics=21, num_words=4)
+    for x in topics:
+        print(x)
     # read file contents and split into words
     os.chdir(dirpath+ "//docs//")
     docs = glob.glob("*.txt")
@@ -143,6 +147,17 @@ def similarity1():
 
                 doc_1_ldax = lda[doc_1_bowx]
                 doc_2_ldax = lda[doc_2_bowx]
+                
+                #print(doc_1_lda)
+                #print(doc_2_lda)
+                prob_a = np.zeros(21)
+                prob_b = np.zeros(21)
+                for x in doc_1_ldax:
+                    prob_a[x[0]] = x[1]
+                for x in doc_2_ldax:
+                    prob_b[x[0]] = x[1]
+                #print(prob_a)
+                #print(prob_b)
 
                 # find similarity using cosine distance
                 similarity = cossim(doc_1_lda, doc_2_lda)
@@ -150,12 +165,14 @@ def similarity1():
                 
 
                 print("After excluding selected words")
-                
+                #print(doc_1_ldax)
+                #print(doc_2_ldax)
                 similarityx = cossim(doc_1_ldax, doc_2_ldax)
                 print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarityx*100))
                 print()
-
-
-#process()
-#lda()
-similarity1()
+                plot_graph(prob_a,prob_b,docs[i][:-4],docs[j][:-4],similarityx)
+                
+if __name__ == "__main__":
+    #process()
+    #lda()
+    similarity1()
