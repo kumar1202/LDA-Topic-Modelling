@@ -1,7 +1,7 @@
 
-# -*- coding: ansi -*-
+# -*- coding: utf-8 -*-
 """
-Created on Tue Jan  2 14:35:31 2018
+Created on Sat Jan  13 14:35:31 2018
 
 @author: Admin
 """
@@ -116,13 +116,19 @@ def similarity1():
     print(dirpath)
     res_file = open(dirpath+"\\res_list.txt","r",encoding="ansi")
     res_list = res_file.read().split('\n')
-    print(res_list)
+    #print(res_list)
     id2word = Dictionary.load('model_1/foobar.txtdic')
     # load LDA model
     lda = LdaModel.load('model_1/lda.model')
-    topics = lda.print_topics(num_topics=21, num_words=4)
-    for x in topics:
-        print(x)
+    # Forming topic-term matrix 
+    #topics = lda.print_topics(num_topics=21, num_words=4)
+    terms_matrix = np.zeros((21,50))
+    #for x in topics:
+    #    print(x)
+    for i in range(21):
+        l = lda.get_topic_terms(i, topn=50)
+        for j in range(50):
+            terms_matrix[i][j] = l[j][0]
     # read file contents and split into words
     os.chdir(dirpath+ "//docs//")
     docs = glob.glob("*.txt")
@@ -135,15 +141,36 @@ def similarity1():
                 # remove excluded words
                 doc_1x = [x for x in doc_1 if x not in res_list]
                 doc_2x = [x for x in doc_2 if x not in res_list]
+                
                 # create document bow
-                doc_1_bow = id2word.doc2bow(doc_1)
-                doc_2_bow = id2word.doc2bow(doc_2)
-
+                
+                #doc_1_bow = id2word.doc2bow(doc_1)
+                #doc_2_bow = id2word.doc2bow(doc_2)
+                
+                
                 doc_1_bowx = id2word.doc2bow(doc_1x)
                 doc_2_bowx = id2word.doc2bow(doc_2x)
+
+                # Forming doc-term vector
+                doc_term_list_1 = []
+                for x in doc_1_bowx:
+                    doc_term_list_1.append(x[0])
+                
+                doc_term_np_1 = np.array(doc_term_list_1)
+                doc_term_list_2 = []
+                
+                for x in doc_2_bowx:
+                    doc_term_list_2.append(x[0])
+                doc_term_np_2 = np.array(doc_term_list_2)
+                
+                #print(doc_term_np_1)
+                #print((doc_term_np_2))
+                #print(doc_1_bowx)
+                #print(doc_2_bowx)
                 # infer topic distributions
-                doc_1_lda = lda[doc_1_bow]
-                doc_2_lda = lda[doc_2_bow]
+                
+                #doc_1_lda = lda[doc_1_bow]
+                #doc_2_lda = lda[doc_2_bow]
 
                 doc_1_ldax = lda[doc_1_bowx]
                 doc_2_ldax = lda[doc_2_bowx]
@@ -159,19 +186,41 @@ def similarity1():
                 #print(prob_a)
                 #print(prob_b)
 
+                # Finding words relating the difference
+
+                diff_topics = []
+                index = 0
+                for x,y in zip(prob_a,prob_b):
+                    if x == 0 and y != 0:
+                        diff_topics.append(index)
+                    elif x != 0 and y == 0:
+                        diff_topics.append(index)
+                    index = index + 1
+                #print(diff_topics)
+
+                diff_terms = []
+                for x in diff_topics:
+                    for y in terms_matrix[x]:
+                        if y in doc_term_np_1 or y in doc_term_np_2:
+                            diff_terms.append(int(y))
+                #print(diff_terms)        
+                    
                 # find similarity using cosine distance
-                similarity = cossim(doc_1_lda, doc_2_lda)
-                print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarity*100))
+                #similarity = cossim(doc_1_lda, doc_2_lda)
+                #print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarity*100))
                 
 
-                print("After excluding selected words")
+                #print("After excluding selected words")
                 #print(doc_1_ldax)
                 #print(doc_2_ldax)
                 similarityx = cossim(doc_1_ldax, doc_2_ldax)
                 print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarityx*100))
-                print()
-                plot_graph(prob_a,prob_b,docs[i][:-4],docs[j][:-4],similarityx)
+                print("The words cauing the difference are")
+                for x in diff_terms:
+                    print(id2word[x])
+                #plot_graph(prob_a,prob_b,docs[i][:-4],docs[j][:-4],similarityx)
                 
+
 if __name__ == "__main__":
     #process()
     #lda()
