@@ -1,7 +1,7 @@
 
 # -*- coding: utf-8 -*-
 """
-Created on Sat Jan  13 14:35:31 2018
+Created on Tue Jan  2 14:35:31 2018
 
 @author: Admin
 """
@@ -122,12 +122,12 @@ def similarity1():
     lda = LdaModel.load('model_1/lda.model')
     # Forming topic-term matrix 
     #topics = lda.print_topics(num_topics=21, num_words=4)
-    terms_matrix = np.zeros((21,50))
+    terms_matrix = np.zeros((21,75))
     #for x in topics:
     #    print(x)
     for i in range(21):
-        l = lda.get_topic_terms(i, topn=50)
-        for j in range(50):
+        l = lda.get_topic_terms(i, topn=75)
+        for j in range(75):
             terms_matrix[i][j] = l[j][0]
     # read file contents and split into words
     os.chdir(dirpath+ "//docs//")
@@ -214,8 +214,9 @@ def similarity1():
                 #print(doc_1_ldax)
                 #print(doc_2_ldax)
                 similarityx = cossim(doc_1_ldax, doc_2_ldax)
+                print()
                 print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarityx*100))
-                print("The words cauing the difference are")
+                print("The words causing the difference are")
                 for x in diff_terms:
                     print(id2word[x])
                 #plot_graph(prob_a,prob_b,docs[i][:-4],docs[j][:-4],similarityx)
