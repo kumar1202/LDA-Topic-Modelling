@@ -114,6 +114,7 @@ def similarity1():
     # load word-id dictionary
     dirpath = os.getcwd()
     print(dirpath)
+    num_of_topics = 21
     res_file = open(dirpath+"\\res_list.txt","r",encoding="ansi")
     res_list = res_file.read().split('\n')
     #print(res_list)
@@ -122,105 +123,124 @@ def similarity1():
     lda = LdaModel.load('model_1/lda.model')
     # Forming topic-term matrix 
     #topics = lda.print_topics(num_topics=21, num_words=4)
-    terms_matrix = np.zeros((21,75))
+    terms_per_topic = 90
+    terms_matrix = np.zeros((num_of_topics,terms_per_topic))
     #for x in topics:
     #    print(x)
-    for i in range(21):
-        l = lda.get_topic_terms(i, topn=75)
-        for j in range(75):
+    for i in range(num_of_topics):
+        l = lda.get_topic_terms(i, topn=terms_per_topic)
+        for j in range(terms_per_topic):
             terms_matrix[i][j] = l[j][0]
     # read file contents and split into words
     os.chdir(dirpath+ "//docs//")
     docs = glob.glob("*.txt")
+    master_doc = "Cloud Developer.txt"
+    # Process the master doc
+    with open(master_doc) as fp:
+        doc_master = fp.read().lower().split()
+
+    # remove excluded words
+    doc_1x = [x for x in doc_master if x not in res_list]
+
+    # create document bow
+    doc_1_bowx = id2word.doc2bow(doc_1x)
+
+    # Forming doc-term vector
+    doc_term_list_1 = []
+    for x in doc_1_bowx:
+        doc_term_list_1.append(x[0])
+                
+    doc_term_np_1 = np.array(doc_term_list_1)
+    
+    # infer topic distributions
+    doc_1_ldax = lda[doc_1_bowx]
+
+    # Probablity distributions
+    prob_a = np.zeros(num_of_topics)
+    for x in doc_1_ldax:
+        prob_a[x[0]] = x[1]
+    for x in doc_1_ldax:
+        prob_a[x[0]] = x[1]
+    
+    # Comparing every doc with the master doc
     for i in range(len(docs)):
-        for j in range(i+1,len(docs)):
-            with open(docs[i]) as fp:
-                doc_1 = fp.read().lower().split()
-            with open(docs[j]) as fp:
-                doc_2 = fp.read().lower().split()
-                # remove excluded words
-                doc_1x = [x for x in doc_1 if x not in res_list]
-                doc_2x = [x for x in doc_2 if x not in res_list]
-                
-                # create document bow
-                
-                #doc_1_bow = id2word.doc2bow(doc_1)
-                #doc_2_bow = id2word.doc2bow(doc_2)
-                
-                
-                doc_1_bowx = id2word.doc2bow(doc_1x)
-                doc_2_bowx = id2word.doc2bow(doc_2x)
+        with open(docs[i]) as fp:
+            doc_2 = fp.read().lower().split()
+        # remove excluded words
+        doc_2x = [x for x in doc_2 if x not in res_list]
+        
+        # create document bow
+        
+        #doc_1_bow = id2word.doc2bow(doc_1)
+        #doc_2_bow = id2word.doc2bow(doc_2)
+        
+        doc_2_bowx = id2word.doc2bow(doc_2x)
 
-                # Forming doc-term vector
-                doc_term_list_1 = []
-                for x in doc_1_bowx:
-                    doc_term_list_1.append(x[0])
-                
-                doc_term_np_1 = np.array(doc_term_list_1)
-                doc_term_list_2 = []
-                
-                for x in doc_2_bowx:
-                    doc_term_list_2.append(x[0])
-                doc_term_np_2 = np.array(doc_term_list_2)
-                
-                #print(doc_term_np_1)
-                #print((doc_term_np_2))
-                #print(doc_1_bowx)
-                #print(doc_2_bowx)
-                # infer topic distributions
-                
-                #doc_1_lda = lda[doc_1_bow]
-                #doc_2_lda = lda[doc_2_bow]
+        # Forming doc-term vector
+        doc_term_list_2 = []
+        for x in doc_2_bowx:
+            doc_term_list_2.append(x[0])
+        doc_term_np_2 = np.array(doc_term_list_2)
+        
+        #print(doc_term_np_1)
+        #print((doc_term_np_2))
+        #print(doc_1_bowx)
+        #print(doc_2_bowx)
+        
+        # infer topic distributions
+        
+        #doc_1_lda = lda[doc_1_bow]
+        #doc_2_lda = lda[doc_2_bow]
 
-                doc_1_ldax = lda[doc_1_bowx]
-                doc_2_ldax = lda[doc_2_bowx]
-                
-                #print(doc_1_lda)
-                #print(doc_2_lda)
-                prob_a = np.zeros(21)
-                prob_b = np.zeros(21)
-                for x in doc_1_ldax:
-                    prob_a[x[0]] = x[1]
-                for x in doc_2_ldax:
-                    prob_b[x[0]] = x[1]
-                #print(prob_a)
-                #print(prob_b)
+        doc_2_ldax = lda[doc_2_bowx]
+        
+        #print(doc_1_lda)
+        #print(doc_2_lda)
+        
+        # Probablity distributions
 
-                # Finding words relating the difference
+        prob_b = np.zeros(num_of_topics)
+        for x in doc_1_ldax:
+            prob_a[x[0]] = x[1]
+        for x in doc_2_ldax:
+            prob_b[x[0]] = x[1]
+        #print(prob_a)
+        #print(prob_b)
 
-                diff_topics = []
-                index = 0
-                for x,y in zip(prob_a,prob_b):
-                    if x == 0 and y != 0:
-                        diff_topics.append(index)
-                    elif x != 0 and y == 0:
-                        diff_topics.append(index)
-                    index = index + 1
-                #print(diff_topics)
+        # Finding words relating the difference
+        prob_diff_threshold = 0.5 
+        diff_topics = []
+        index = 0
+        for x,y in zip(prob_a,prob_b):
+            if (x - y < prob_diff_threshold and x - y >= 0) or (x != 0 and y == 0):
+                diff_topics.append(index)
+            index = index + 1
+        #print(diff_topics)
 
-                diff_terms = []
-                for x in diff_topics:
-                    for y in terms_matrix[x]:
-                        if y in doc_term_np_1 or y in doc_term_np_2:
-                            diff_terms.append(int(y))
-                #print(diff_terms)        
-                    
-                # find similarity using cosine distance
-                #similarity = cossim(doc_1_lda, doc_2_lda)
-                #print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarity*100))
-                
+        diff_terms = []
+        for x in diff_topics:
+            for y in terms_matrix[x]:
+                if y in doc_term_np_1 or y in doc_term_np_2:
+                    diff_terms.append(int(y))
+        #print(diff_terms)        
+            
+        # find similarity using cosine distance
 
-                #print("After excluding selected words")
-                #print(doc_1_ldax)
-                #print(doc_2_ldax)
-                similarityx = cossim(doc_1_ldax, doc_2_ldax)
-                print()
-                print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarityx*100))
-                print("The words causing the difference are")
-                for x in diff_terms:
-                    print(id2word[x])
-                #plot_graph(prob_a,prob_b,docs[i][:-4],docs[j][:-4],similarityx)
-                
+        #similarity = cossim(doc_1_lda, doc_2_lda)
+        #print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarity*100))
+            
+
+        #print("After excluding selected words")
+        #print(doc_1_ldax)
+        #print(doc_2_ldax)
+        similarityx = cossim(doc_1_ldax, doc_2_ldax)
+        print()
+        print("The similarity score of "+ master_doc[:-4] + " and "+ docs[i][:-4] + " is = " + str(similarityx*100))
+        print("The words causing the difference are")
+        for x in diff_terms:
+            print(id2word[x])
+        #plot_graph(prob_a,prob_b,docs[i][:-4],docs[j][:-4],similarityx)
+        
 
 if __name__ == "__main__":
     #process()
