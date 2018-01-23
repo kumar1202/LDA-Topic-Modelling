@@ -1,7 +1,7 @@
 
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jan  2 14:35:31 2018
+Created on Mon Jan 22 14:35:31 2018
 
 @author: Admin
 """
@@ -208,22 +208,52 @@ def similarity1():
         #print(prob_b)
 
         # Finding words relating the difference
-        prob_diff_threshold = 0.5 
+        lda_removed_topics = []
+        prob_diff_threshold = 0.
         diff_topics = []
         index = 0
-        for x,y in zip(prob_a,prob_b):
+        for x, y in zip(prob_a,prob_b):
             if (x - y < prob_diff_threshold and x - y >= 0) or (x != 0 and y == 0):
                 diff_topics.append(index)
+            elif x == 0 and y != 0 or (y - x < prob_diff_threshold and y - x >= 0):
+                lda_removed_topics.append(index)
             index = index + 1
         #print(diff_topics)
-
+        print(lda_removed_topics)
         diff_terms = []
         for x in diff_topics:
             for y in terms_matrix[x]:
                 if y in doc_term_np_1 or y in doc_term_np_2:
                     diff_terms.append(int(y))
         #print(diff_terms)        
+
+        # Removing redundant topic terms from LDA vector
+        doc_1_lda_final = []
+        doc_2_lda_final = []        
+        for j in range(21):
             
+            y = 0
+            if j in lda_removed_topics:
+                y = 0.0       
+            else:
+                y = prob_a[j]
+            a = (j,y)
+            #print(a)
+            doc_1_lda_final.append(a)
+        
+        for j in range(21):
+            y = 0
+            if int(j) in lda_removed_topics:
+                y = 0.0         
+            else:
+                y = prob_b[j]
+            a = (j,y)
+            doc_2_lda_final.append(a)
+        
+        #print(doc_1_ldax,doc_2_ldax)
+        #print()
+        #print(doc_1_lda_final,doc_2_lda_final)
+        
         # find similarity using cosine distance
 
         #similarity = cossim(doc_1_lda, doc_2_lda)
@@ -234,12 +264,14 @@ def similarity1():
         #print(doc_1_ldax)
         #print(doc_2_ldax)
         similarityx = cossim(doc_1_ldax, doc_2_ldax)
+        similarity_final = cossim(doc_1_lda_final, doc_2_lda_final)
         print()
         print("The similarity score of "+ master_doc[:-4] + " and "+ docs[i][:-4] + " is = " + str(similarityx*100))
         print("The words causing the difference are")
         for x in diff_terms:
             print(id2word[x])
-        #plot_graph(prob_a,prob_b,docs[i][:-4],docs[j][:-4],similarityx)
+        print("The similarity score of "+ master_doc[:-4] + " and "+ docs[i][:-4] + " is = " + str(similarity_final*100))
+        #plot_graph(prob_a,prob_b,master_doc[:-4],docs[i][:-4],similarityx)
         
 
 if __name__ == "__main__":
