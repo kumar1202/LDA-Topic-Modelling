@@ -22,8 +22,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 def process():
     # read all the text files in the directory and build a corpus
     corpus = TextDirectoryCorpus("C://Users//Kumar Abhijeet//Project/Preprocess_data//JD//")
-    # save word-id dictionary
-    #corpus.dictionary.save_as_text('wordids_JD2.txt')
+    
     # save matrix market format vectors
     MmCorpus.serialize('JD_bow.mm', corpus)
 
@@ -117,16 +116,12 @@ def similarity1():
     num_of_topics = 21
     res_file = open(dirpath+"\\res_list.txt","r",encoding="ansi")
     res_list = res_file.read().split('\n')
-    #print(res_list)
     id2word = Dictionary.load('model_1/foobar.txtdic')
     # load LDA model
     lda = LdaModel.load('model_1/lda.model')
     # Forming topic-term matrix 
-    #topics = lda.print_topics(num_topics=21, num_words=4)
     terms_per_topic = 90
     terms_matrix = np.zeros((num_of_topics,terms_per_topic))
-    #for x in topics:
-    #    print(x)
     for i in range(num_of_topics):
         l = lda.get_topic_terms(i, topn=terms_per_topic)
         for j in range(terms_per_topic):
@@ -171,9 +166,6 @@ def similarity1():
         
         # create document bow
         
-        #doc_1_bow = id2word.doc2bow(doc_1)
-        #doc_2_bow = id2word.doc2bow(doc_2)
-        
         doc_2_bowx = id2word.doc2bow(doc_2x)
 
         # Forming doc-term vector
@@ -182,20 +174,10 @@ def similarity1():
             doc_term_list_2.append(x[0])
         doc_term_np_2 = np.array(doc_term_list_2)
         
-        #print(doc_term_np_1)
-        #print((doc_term_np_2))
-        #print(doc_1_bowx)
-        #print(doc_2_bowx)
-        
         # infer topic distributions
-        
-        #doc_1_lda = lda[doc_1_bow]
-        #doc_2_lda = lda[doc_2_bow]
 
         doc_2_ldax = lda[doc_2_bowx]
         
-        #print(doc_1_lda)
-        #print(doc_2_lda)
         
         # Probablity distributions
 
@@ -204,12 +186,10 @@ def similarity1():
             prob_a[x[0]] = x[1]
         for x in doc_2_ldax:
             prob_b[x[0]] = x[1]
-        #print(prob_a)
-        #print(prob_b)
-
+        
         # Finding words relating the difference
         lda_removed_topics = []
-        prob_diff_threshold = 0.
+        prob_diff_threshold = 0.3
         diff_topics = []
         index = 0
         for x, y in zip(prob_a,prob_b):
@@ -218,15 +198,13 @@ def similarity1():
             elif x == 0 and y != 0 or (y - x < prob_diff_threshold and y - x >= 0):
                 lda_removed_topics.append(index)
             index = index + 1
-        #print(diff_topics)
         print(lda_removed_topics)
         diff_terms = []
         for x in diff_topics:
             for y in terms_matrix[x]:
                 if y in doc_term_np_1 or y in doc_term_np_2:
                     diff_terms.append(int(y))
-        #print(diff_terms)        
-
+        
         # Removing redundant topic terms from LDA vector
         doc_1_lda_final = []
         doc_2_lda_final = []        
@@ -238,7 +216,7 @@ def similarity1():
             else:
                 y = prob_a[j]
             a = (j,y)
-            #print(a)
+            
             doc_1_lda_final.append(a)
         
         for j in range(21):
@@ -250,19 +228,9 @@ def similarity1():
             a = (j,y)
             doc_2_lda_final.append(a)
         
-        #print(doc_1_ldax,doc_2_ldax)
-        #print()
-        #print(doc_1_lda_final,doc_2_lda_final)
         
         # find similarity using cosine distance
 
-        #similarity = cossim(doc_1_lda, doc_2_lda)
-        #print("The similarity score of "+ docs[i][:-4] + " and "+ docs[j][:-4] + " is = " + str(similarity*100))
-            
-
-        #print("After excluding selected words")
-        #print(doc_1_ldax)
-        #print(doc_2_ldax)
         similarityx = cossim(doc_1_ldax, doc_2_ldax)
         similarity_final = cossim(doc_1_lda_final, doc_2_lda_final)
         print()
