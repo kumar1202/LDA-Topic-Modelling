@@ -1,9 +1,9 @@
 
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jan 22 14:35:31 2018
+Created on Thurs Jan 25 14:35:31 2018
 
-@author: Admin
+@author: Kumar Abhijeet
 """
 from gensim.corpora.textcorpus import TextDirectoryCorpus
 from gensim.corpora import Dictionary, MmCorpus
@@ -198,7 +198,6 @@ def similarity1():
             elif x == 0 and y != 0 or (y - x < prob_diff_threshold and y - x >= 0):
                 lda_removed_topics.append(index)
             index = index + 1
-        print(lda_removed_topics)
         diff_terms = []
         for x in diff_topics:
             for y in terms_matrix[x]:
